@@ -23,6 +23,7 @@ def start_here():
 
 @app.route("/hello")
 def say_hello():
+
     """Say hello and prompt for user's name."""
 
     return """
@@ -33,9 +34,28 @@ def say_hello():
       </head>
       <body>
         <h1>Hi There!</h1>
+        <a href="http://localhost:5000">Go home</a>
         <form action="/greet">
           What's your name? <input type="text" name="person">
           <input type="submit" value="Submit">
+          <br>
+
+          Compliments
+
+           <select name = "Compliments">
+
+            <option value = "Awesome">Awesome</option>
+            <option value = "Terrific">Terrific</option>
+            <option value = "Fantastic">Fantastic</option>
+            <option value = "Neato">Neato</option>
+            <option value = "Fantabulous">Fantabulous</option>
+            <option value = "Wowza">Wowza</option>
+            <option value = "Wonderful">Wonderful</option>
+            <option value = "Smashing">Smashing</option>
+            <option value = "Lovely">Lovely</option>
+
+          </select>
+
         </form>
       </body>
     </html>
@@ -48,7 +68,8 @@ def greet_person():
 
     player = request.args.get("person")
 
-    compliment = choice(AWESOMENESS)
+    # compliment = choice(AWESOMENESS)
+    compliment = request.args.get("Compliments")
 
     y = x
 
@@ -68,4 +89,4 @@ def greet_person():
 if __name__ == "__main__":
     # debug=True gives us error messages in the browser and also "reloads"
     # our web app if we change the code.
-    app.run(debug=False, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0")
